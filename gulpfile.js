@@ -29,6 +29,7 @@ gulp.task(
 gulp.task('package-compress', () => {
 	return gulp.src([
         `${NAME}.php`,
+		'assets/*.png',
         'block-editor.js',
         'icons.json',
         'index.php',

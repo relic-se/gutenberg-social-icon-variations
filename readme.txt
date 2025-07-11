@@ -5,7 +5,7 @@ Tags: gutenberg, icons, social
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,9 @@ Known issues:
 2. Demonstration of social icon variations on frontend.
 
 == Changelog ==
+
+= 1.0.1 - 2025-07-11 =
+* Dynamically generate icon data.
 
 = 1.0.0 - 2025-07-11 =
 * Initial build.

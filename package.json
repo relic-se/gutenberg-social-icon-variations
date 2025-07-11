@@ -1,0 +1,25 @@
+{
+	"$schema": "https://www.schemastore.org/package.json",
+	"name": "gutenberg-social-icon-variations",
+	"version": "1.0.0",
+	"title": "Gutenberg Social Icon Variations",
+	"description": "Demonstration of block variations for the social icon block.",
+	"author": "Cooper Dalrymple",
+	"license": "GPL-3.0+",
+	"keywords": [
+		"WordPress",
+		"Gutenberg",
+		"Social icons"
+	],
+	"homepage": "https://dcdalrymple.com",
+	"engines": {
+		"node": ">=21.1.0",
+		"npm": ">=10.2.3"
+	},
+	"devDependencies": {
+		"gulp": "^5.0.0",
+		"gulp-clean": "^0.4.0",
+		"gulp-cli": "^3.1.0",
+		"gulp-zip": "^6.1.0"
+	}
+}

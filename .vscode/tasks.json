@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Package",
+            "type": "shell",
+            "command": "gulp",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+            }
+        }
+    ]
+}

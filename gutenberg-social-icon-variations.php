@@ -5,14 +5,14 @@
  * @package gutenberg-social-icon-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
- * @version 1.0.1
+ * @version 1.0.2
  * @since 1.0.0
  * 
  * @wordpress-plugin
  * Plugin Name: Gutenberg Social Icon Variations
  * Plugin URI: https://dcdalrymple.com
  * Description: Demonstration of block variations for the social icon block.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Cooper Dalrymple
  * Author URI: https://dcdalrymple.com
  * Text Domain: gsiv
@@ -33,6 +33,7 @@ defined('ABSPATH') || exit;
 define('GSIV_FILE', __FILE__);
 define('GSIV_DIR', plugin_dir_path(GSIV_FILE));
 define('GSIV_URL', plugin_dir_url(GSIV_FILE));
+define('GSIV_ICON_FILE', 'icons.json');
 
 function get_data(string $key = ''):array|string {
     $data = get_plugin_data(GSIV_FILE);
@@ -45,13 +46,32 @@ function get_version():string {
 }
 
 function get_icons():array {
-    $icons = wp_json_file_decode(GSIV_DIR . 'icons.json', [
-        'associative'=> true,
+    // Support theme icons
+    $paths = (array)apply_filters('gsiv_icon_paths', [
+        trailingslashit(get_stylesheet_directory()) . GSIV_ICON_FILE,
+        trailingslashit(get_template_directory()) . GSIV_ICON_FILE,
     ]);
-    if (is_null($icons)) $icons = [];
+    $paths = array_filter($paths, 'file_exists');
+    $paths = array_reverse($paths); // Change order (child overrides parent)
+
+    // Use default icons if theme doesn't exist
+    if (empty($paths)) $paths[] = GSIV_DIR . GSIV_ICON_FILE;
+
+    // Decode and merge icon data
+    $icons = [];
+    foreach ($paths as $path) {
+        $_icons = wp_json_file_decode($path, [
+            'associative'=> true,
+        ]);
+        if (is_null($_icons)) continue;
+        $icons = array_merge($icons, $_icons);
+    }
+
+    // Allow translation
     foreach ($icons as &$icon) {
         $icon['title'] = __($icon['title'], 'gsiv');
     }
+
     return apply_filters('gsiv_icons', $icons);
 }
 

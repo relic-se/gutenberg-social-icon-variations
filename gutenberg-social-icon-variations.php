@@ -90,6 +90,8 @@ function get_icon_html(array $icon):string {
 }
 
 function render_block(string $block_content, array $block, WP_Block $instance):string {
+    if (empty($block_content)) return $block_content;
+    
     $icons = get_icons();
     if (empty($icons)) return $block_content;
 

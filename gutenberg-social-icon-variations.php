@@ -15,7 +15,7 @@
  * Version: 1.0.3
  * Author: Cooper Dalrymple
  * Author URI: https://dcdalrymple.com
- * Text Domain: gsiv
+ * Text Domain: gutenberg-social-icon-variations
  * Domain Path: /lang
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -66,7 +66,7 @@ function get_icons():array {
 
     // Allow translation
     foreach ($icons as &$icon) {
-        $icon['title'] = __($icon['title'], 'gsiv');
+        $icon['title'] = __($icon['title'], 'gutenberg-social-icon-variations');
     }
 
     return (array) apply_filters('gsiv_icons', $icons);
@@ -134,7 +134,7 @@ function enqueue_block_editor_assets():void {
 	$url = trailingslashit(WP_CONTENT_URL . substr($path, strlen(WP_CONTENT_DIR)));
 
     wp_enqueue_script(
-        'gsiv',
+        'gutenberg-social-icon-variations',
         $url . 'block-editor.js',
         [
             'wp-blocks',
@@ -144,6 +144,6 @@ function enqueue_block_editor_assets():void {
         get_version(),
         true
     );
-    wp_localize_script('gsiv', 'gsiv_icons', get_icons());
+    wp_localize_script('gutenberg-social-icon-variations', 'gsiv_icons', get_icons());
 }
 add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets');

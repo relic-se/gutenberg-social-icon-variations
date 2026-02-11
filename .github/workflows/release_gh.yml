@@ -27,4 +27,3 @@ jobs:
       with:
         pattern: "*.zip"
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        release-url: ${{ github.event.release.upload_url }}

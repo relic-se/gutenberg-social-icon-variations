@@ -10,7 +10,7 @@
  * 
  * @wordpress-plugin
  * Plugin Name: Social Icon Block Variations
- * Plugin URI: https://dcdalrymple.com
+ * Plugin URI: https://github.com/relic-se/social-icon-block-variations
  * Description: Demonstration of block variations for the social icon block.
  * Version: 1.1.0
  * Author: Cooper Dalrymple

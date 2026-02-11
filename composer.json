@@ -1,23 +1,23 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-	"name": "relic-se/gutenberg-social-icon-variations",
+	"name": "relic-se/social-icon-block-variations",
 	"version": "1.0.3",
-	"title": "Gutenberg Social Icon Variations",
+	"title": "Social Icon Block Variations",
 	"description": "Demonstration of block variations for the social icon block.",
 	"author": "Cooper Dalrymple (relic-se)",
 	"license": "GPL-3.0+",
 	"keywords": [
 		"WordPress",
-		"Gutenberg",
-		"Social icons"
+		"Social icons",
+		"Block variations"
 	],
-	"homepage": "https://github.com/relic-se/gutenberg-social-icon-variations",
+	"homepage": "https://github.com/relic-se/social-icon-block-variations",
     "config": {
         "optimize-autoloader": true
     },
     "autoload": {
         "files": [
-            "gutenberg-social-icon-variations.php"
+            "social-icon-block-variations.php"
         ]
     }
 }

@@ -1,17 +1,17 @@
 {
 	"$schema": "https://www.schemastore.org/package.json",
-	"name": "gutenberg-social-icon-variations",
+	"name": "social-icon-block-variations",
 	"version": "1.0.3",
-	"title": "Gutenberg Social Icon Variations",
+	"title": "Social Icon Block Variations",
 	"description": "Demonstration of block variations for the social icon block.",
 	"author": "Cooper Dalrymple (relic-se)",
 	"license": "GPL-3.0+",
 	"keywords": [
 		"WordPress",
-		"Gutenberg",
-		"Social icons"
+		"Social icons",
+		"Block variations"
 	],
-	"homepage": "https://github.com/relic-se/gutenberg-social-icon-variations",
+	"homepage": "https://github.com/relic-se/social-icon-block-variations",
 	"engines": {
 		"node": ">=21.0.1",
 		"npm": ">=10.2.3"

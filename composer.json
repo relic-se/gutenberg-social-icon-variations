@@ -1,7 +1,7 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
 	"name": "relic-se/social-icon-block-variations",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"title": "Social Icon Block Variations",
 	"description": "Demonstration of block variations for the social icon block.",
 	"author": "Cooper Dalrymple (relic-se)",

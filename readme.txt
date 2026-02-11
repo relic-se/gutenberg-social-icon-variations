@@ -5,7 +5,7 @@ Tags: block, icons, social, variations, phone
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,10 @@ Known issues:
 2. Demonstration of social icon variations on frontend.
 
 == Changelog ==
+
+= 1.1.0 - 2026-02-11 =
+* Renamed to Social Icon Block Variations.
+* DEV: Validated with plugin check.
 
 = 1.0.3 - 2026-02-11 =
 * DEV: Added `GSIV\get_icon_attributes` function.

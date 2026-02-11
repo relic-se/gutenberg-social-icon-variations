@@ -5,14 +5,14 @@
  * @package gutenberg-social-icon-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
- * @version 1.0.2
+ * @version 1.0.3
  * @since 1.0.0
  * 
  * @wordpress-plugin
  * Plugin Name: Gutenberg Social Icon Variations
  * Plugin URI: https://dcdalrymple.com
  * Description: Demonstration of block variations for the social icon block.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Cooper Dalrymple
  * Author URI: https://dcdalrymple.com
  * Text Domain: gsiv

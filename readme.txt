@@ -4,8 +4,8 @@ Donate link: https://dcdalrymple.com
 Tags: gutenberg, icons, social
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.8.2
-Stable tag: 1.0.2
+Tested up to: 6.9
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,12 @@ Known issues:
 2. Demonstration of social icon variations on frontend.
 
 == Changelog ==
+
+= 1.0.3 - 2026-02-11 =
+* DEV: Added `GSIV\get_icon_attributes` function.
+* DEV: Added `"gsiv_icon_attributes"` filter.
+* DEV: Added composer support.
+* DEV: Added `"gsiv_icon_filename"` filter.
 
 = 1.0.2 - 2025-08-01 =
 * NEW: Allow icon data to be overwritten by providing `icons.json` file in either parent or child theme.

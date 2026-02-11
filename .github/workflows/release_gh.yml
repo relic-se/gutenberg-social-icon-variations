@@ -23,7 +23,7 @@ jobs:
       run: gulp
 
     - name: Upload package to release
-      uses: actions/release-asset@v3
+      uses: csexton/release-asset@v3
       with:
         pattern: "*.zip"
         github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -42,7 +42,7 @@ function get_data(string $key = ''):array|string {
 }
 
 function get_version():string {
-    return get_data('Version');
+    return (string) get_data('Version');
 }
 
 function get_icons():array {
@@ -72,17 +72,32 @@ function get_icons():array {
         $icon['title'] = __($icon['title'], 'gsiv');
     }
 
-    return apply_filters('gsiv_icons', $icons);
+    return (array) apply_filters('gsiv_icons', $icons);
+}
+
+function get_icon_attributes(array $icon):array {
+    return (array) apply_filters(
+        'gsiv_icon_attributes',
+        array_filter([
+            'height' => $icon['height'] ?? '',
+            'width' => $icon['width'] ?? '',
+            'viewBox' => $icon['viewBox'] ?? '',
+        ]),
+        $icon
+    );
 }
 
 function get_icon_html(array $icon):string {
-    return apply_filters(
+    $attrs = get_icon_attributes($icon);
+    return (string) apply_filters(
         'gsiv_icon_html',
             sprintf(
-            '<svg xmlns="http://www.w3.org/2000/svg" height="%s" width="%s" viewBox="%s"><path d="%s"/></svg>',
-            esc_attr($icon['height']),
-            esc_attr($icon['width']),
-            esc_attr($icon['viewBox']),
+            '<svg xmlns="http://www.w3.org/2000/svg"%s><path d="%s"/></svg>',
+            rtrim(' ' . implode(' ', array_map(
+                fn ($key, $value) => sprintf('%s="%s"', $key, esc_attr($value)),
+                array_keys($attrs),
+                array_values($attrs)
+            ))),
             esc_attr($icon['path'])
         ),
         $icon

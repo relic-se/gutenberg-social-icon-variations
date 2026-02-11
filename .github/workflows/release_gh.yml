@@ -1,0 +1,30 @@
+name: GitHub Release Actions
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  upload-release-assets:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "25.x"
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Compile package
+      run: gulp
+
+    - name: Upload package to release
+      uses: actions/release-asset@v3
+      with:
+        pattern: "*.zip"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        release-url: ${{ github.event.release.upload_url }}

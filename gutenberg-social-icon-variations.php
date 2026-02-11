@@ -64,11 +64,6 @@ function get_icons():array {
         $icons = array_merge($icons, $_icons);
     }
 
-    // Allow translation
-    foreach ($icons as &$icon) {
-        $icon['title'] = __($icon['title'], 'gutenberg-social-icon-variations');
-    }
-
     return (array) apply_filters('gsiv_icons', $icons);
 }
 

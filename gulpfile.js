@@ -82,6 +82,8 @@ gulp.task('package', () => {
         'block-editor.js',
         'icons.json',
         'index.php',
+		'lang',
+		'lang/**/*',
         'LICENSE',
         'readme.txt'
 	], { base: './' })

@@ -14,7 +14,8 @@ const gulp = require('gulp'),
 	util = require('gulp-util'),
 	{ parseFromString } = require('dom-parser');
 
-const NAME = __dirname.split('/').reverse()[0];
+const PACKAGE = require('./package.json');
+const NAME = PACKAGE.name;
 
 const svg2icon = (dest) => {
 	const getName = (filepath) => {

@@ -1,5 +1,5 @@
 /**
- * @package gutenberg-social-icon-variations
+ * @package social-icon-block-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
  * @version 1.0.1
@@ -14,7 +14,8 @@ const gulp = require('gulp'),
 	util = require('gulp-util'),
 	{ parseFromString } = require('dom-parser');
 
-const NAME = __dirname.split('/').reverse()[0];
+const PACKAGE = require('./package.json');
+const NAME = PACKAGE.name;
 
 const svg2icon = (dest) => {
 	const getName = (filepath) => {
@@ -82,6 +83,8 @@ gulp.task('package', () => {
         'block-editor.js',
         'icons.json',
         'index.php',
+		'lang',
+		'lang/**/*',
         'LICENSE',
         'readme.txt'
 	], { base: './' })

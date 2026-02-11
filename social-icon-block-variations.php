@@ -1,21 +1,21 @@
 <?php
 /**
- * Gutenberg Social Icon Variations
+ * Social Icon Block Variations
  * 
- * @package gutenberg-social-icon-variations
+ * @package social-icon-block-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
  * @version 1.0.3
  * @since 1.0.0
  * 
  * @wordpress-plugin
- * Plugin Name: Gutenberg Social Icon Variations
+ * Plugin Name: Social Icon Block Variations
  * Plugin URI: https://dcdalrymple.com
  * Description: Demonstration of block variations for the social icon block.
  * Version: 1.0.3
  * Author: Cooper Dalrymple
  * Author URI: https://dcdalrymple.com
- * Text Domain: gsiv
+ * Text Domain: social-icon-block-variations
  * Domain Path: /lang
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -62,11 +62,6 @@ function get_icons():array {
         ]);
         if (is_null($_icons)) continue;
         $icons = array_merge($icons, $_icons);
-    }
-
-    // Allow translation
-    foreach ($icons as &$icon) {
-        $icon['title'] = __($icon['title'], 'gsiv');
     }
 
     return (array) apply_filters('gsiv_icons', $icons);
@@ -134,7 +129,7 @@ function enqueue_block_editor_assets():void {
 	$url = trailingslashit(WP_CONTENT_URL . substr($path, strlen(WP_CONTENT_DIR)));
 
     wp_enqueue_script(
-        'gsiv',
+        'social-icon-block-variations',
         $url . 'block-editor.js',
         [
             'wp-blocks',
@@ -144,6 +139,6 @@ function enqueue_block_editor_assets():void {
         get_version(),
         true
     );
-    wp_localize_script('gsiv', 'gsiv_icons', get_icons());
+    wp_localize_script('social-icon-block-variations', 'gsiv_icons', get_icons());
 }
 add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets');

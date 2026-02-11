@@ -1,7 +1,7 @@
-=== Gutenberg Social Icon Variations ===
+=== Social Icon Block Variations ===
 Contributors: Cooper Dalrymple
 Donate link: https://dcdalrymple.com
-Tags: gutenberg, icons, social
+Tags: block, icons, social, variations, phone
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.9

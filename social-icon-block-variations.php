@@ -23,7 +23,7 @@
  * Requires PHP: 8.0
  */
 
-namespace GSIV;
+namespace SIBV;
 
 use DOMDocument;
 use WP_Block;
@@ -41,10 +41,10 @@ function get_version():string {
 }
 
 function get_icons():array {
-    $filename = trim((string)apply_filters('gsiv_icon_filename', 'icons.json'), '/');
+    $filename = trim((string)apply_filters('sibv_icon_filename', 'icons.json'), '/');
 
     // Support theme icons
-    $paths = (array)apply_filters('gsiv_icon_paths', [
+    $paths = (array)apply_filters('sibv_icon_paths', [
         trailingslashit(get_stylesheet_directory()) . $filename,
         trailingslashit(get_template_directory()) . $filename,
     ]);
@@ -64,12 +64,12 @@ function get_icons():array {
         $icons = array_merge($icons, $_icons);
     }
 
-    return (array) apply_filters('gsiv_icons', $icons);
+    return (array) apply_filters('sibv_icons', $icons);
 }
 
 function get_icon_attributes(array $icon):array {
     return (array) apply_filters(
-        'gsiv_icon_attributes',
+        'sibv_icon_attributes',
         array_filter([
             'height' => $icon['height'] ?? '',
             'width' => $icon['width'] ?? '',
@@ -82,7 +82,7 @@ function get_icon_attributes(array $icon):array {
 function get_icon_html(array $icon):string {
     $attrs = get_icon_attributes($icon);
     return (string) apply_filters(
-        'gsiv_icon_html',
+        'sibv_icon_html',
             sprintf(
             '<svg xmlns="http://www.w3.org/2000/svg"%s><path d="%s"/></svg>',
             rtrim(' ' . implode(' ', array_map(
@@ -139,6 +139,6 @@ function enqueue_block_editor_assets():void {
         get_version(),
         true
     );
-    wp_localize_script('social-icon-block-variations', 'gsiv_icons', get_icons());
+    wp_localize_script('social-icon-block-variations', 'sibv_icons', get_icons());
 }
 add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets');

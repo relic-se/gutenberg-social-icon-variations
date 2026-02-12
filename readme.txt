@@ -35,10 +35,10 @@ Known issues:
 * DEV: Validated with plugin check.
 
 = 1.0.3 - 2026-02-11 =
-* DEV: Added `GSIV\get_icon_attributes` function.
-* DEV: Added `"gsiv_icon_attributes"` filter.
+* DEV: Added `SIBV\get_icon_attributes` function.
+* DEV: Added `"sibv_icon_attributes"` filter.
 * DEV: Added composer support.
-* DEV: Added `"gsiv_icon_filename"` filter.
+* DEV: Added `"sibv_icon_filename"` filter.
 
 = 1.0.2 - 2025-08-01 =
 * NEW: Allow icon data to be overwritten by providing `icons.json` file in either parent or child theme.

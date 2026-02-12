@@ -11,7 +11,7 @@ const { __ } = wp.i18n;
 const { SVG, Path } = wp.primitives;
 const { jsx } = ReactJSXRuntime;
 
-gsiv_icons.forEach((variation) => {
+sibv_icons.forEach((variation) => {
     const { name, title, width, height, viewBox, path } = variation;
     registerBlockVariation('core/social-link', {
         name: name,

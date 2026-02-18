@@ -5,14 +5,14 @@
  * @package social-icon-block-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
- * @version 1.1.0
+ * @version 1.1.1
  * @since 1.0.0
  * 
  * @wordpress-plugin
  * Plugin Name: Social Icon Block Variations
  * Plugin URI: https://github.com/relic-se/social-icon-block-variations
  * Description: Demonstration of block variations for the social icon block.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Cooper Dalrymple
  * Author URI: https://dcdalrymple.com
  * Text Domain: social-icon-block-variations

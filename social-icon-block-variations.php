@@ -125,12 +125,17 @@ add_filter('render_block_core/social-link', __NAMESPACE__ . '\render_block', 10,
 
 function enqueue_block_editor_assets():void {
 	$path = plugin_dir_path(__FILE__);
-	if (!str_starts_with($path, WP_CONTENT_DIR)) return;
-	$url = trailingslashit(WP_CONTENT_URL . substr($path, strlen(WP_CONTENT_DIR)));
+    if (str_starts_with($path, get_template_directory())) {
+        $script_url = get_parent_theme_file_uri(substr($path, strlen(get_template_directory())) . 'block-editor.js');
+    } else if (str_starts_with($path, get_stylesheet_directory())) {
+        $script_url = get_theme_file_uri(substr($path, strlen(get_template_directory())) . 'block-editor.js');
+    } else {
+        $script_url = plugins_url('block-editor.js', __FILE__);
+    }
 
     wp_enqueue_script(
         'social-icon-block-variations',
-        $url . 'block-editor.js',
+        $script_url,
         [
             'wp-blocks',
             'wp-dom-ready',

@@ -1,5 +1,5 @@
 === Social Icon Block Variations ===
-Contributors: Cooper Dalrymple
+Contributors: relicse
 Donate link: https://dcdalrymple.com
 Tags: block, icons, social, variations, phone
 Requires at least: 6.0

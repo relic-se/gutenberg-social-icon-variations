@@ -79,7 +79,6 @@ gulp.task('compile', () => {
 gulp.task('package', () => {
 	return gulp.src([
         `${NAME}.php`,
-		'assets/*.png',
         'block-editor.js',
         'icons.json',
         'index.php',

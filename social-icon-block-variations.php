@@ -44,10 +44,10 @@ function get_icons():array {
     $filename = trim((string)apply_filters('sibv_icon_filename', 'icons.json'), '/');
 
     // Support theme icons
-    $paths = (array)apply_filters('sibv_icon_paths', [
+    $paths = (array)apply_filters('sibv_icon_paths', array_unique([
         trailingslashit(get_stylesheet_directory()) . $filename,
         trailingslashit(get_template_directory()) . $filename,
-    ]);
+    ]));
     $paths = array_filter($paths, 'file_exists');
     $paths = array_reverse($paths); // Change order (child overrides parent)
 

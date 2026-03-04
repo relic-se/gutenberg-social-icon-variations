@@ -72,6 +72,14 @@ function get_icons():array {
         $icons = array_merge($icons, $_icons);
     }
 
+    // Remove duplicate icons
+    $icon_names = wp_list_pluck($icons, 'name');
+    $icons = array_filter(
+        $icons,
+        fn ($value, $key) => array_search($value['name'], $icon_names) == $key,
+        ARRAY_FILTER_USE_BOTH
+    );
+
     return (array) apply_filters('sibv_icons', $icons);
 }
 

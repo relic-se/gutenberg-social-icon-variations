@@ -2,11 +2,12 @@
  * @package social-icon-block-variations
  * @author Cooper Dalrymple
  * @license gplv3-or-later
- * @version 1.0.1
+ * @version 1.1.2
  * @since 1.0.0
  */
 
-const gulp = require('gulp'),
+const fs = require('fs'),
+	gulp = require('gulp'),
 	clean = require('gulp-clean'),
 	zip = require('gulp-zip').default,
 	path = require('path'),
@@ -16,6 +17,59 @@ const gulp = require('gulp'),
 
 const PACKAGE = require('./package.json');
 const NAME = PACKAGE.name;
+
+// Clean Tasks
+
+gulp.task('clean-package-files', (done) => {
+	if (!fs.existsSync('./dist')) return done();
+	return gulp.src(`./dist/${NAME}`, {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean());
+});
+
+gulp.task('clean-package-zip', (done) => {
+	if (!fs.existsSync('./dist')) return done();
+	return gulp.src('./dist/*.zip', {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean());
+});
+
+gulp.task(
+	'clean-package',
+	gulp.series(
+		'clean-package-files',
+		'clean-package-zip'
+	)
+);
+
+gulp.task('clean-icons', () => {
+	return gulp.src('icons.json', {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean());
+});
+
+gulp.task(
+	'clean',
+	gulp.series(
+		'clean-package',
+		'clean-icons'
+	)
+);
+
+gulp.task('clean', () => {
+	return gulp.src([
+		`${NAME}.zip`,
+		'icons.json'
+	], {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean());
+});
+
+// Compile Tasks
 
 const svg2icon = (dest) => {
 	const getName = (filepath) => {
@@ -60,23 +114,22 @@ const svg2icon = (dest) => {
 	return through(process, concat);
 };
 
-gulp.task('clean', () => {
-	return gulp.src([
-		`${NAME}.zip`,
-		'icons.json'
-	], {
-		read: false,
-		allowEmpty: true,
-	}).pipe(clean());
-});
-
-gulp.task('compile', () => {
+gulp.task('compile-icons', () => {
 	return gulp.src('icons/*.svg')
 		.pipe(svg2icon('icons.json'))
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('package', () => {
+gulp.task(
+	'compile',
+	gulp.series(
+		'compile-icons'
+	)
+);
+
+// Package Tasks
+
+gulp.task('package-copy', () => {
 	return gulp.src([
         `${NAME}.php`,
         'block-editor.js',
@@ -86,16 +139,38 @@ gulp.task('package', () => {
 		'lang/**/*',
         'LICENSE',
         'readme.txt'
-	], { base: './' })
-		.pipe(zip(`${NAME}.zip`))
-		.pipe(gulp.dest('./'));
+	], {
+		base: './',
+		encoding: false,
+	})
+		.pipe(gulp.dest(`./dist/${NAME}`));
 });
+
+gulp.task('package-compress', () => {
+	return gulp.src(`./dist/${NAME}/**/*`, {
+        base: './dist',
+        encoding: false,
+    })
+		.pipe(zip(`${NAME}.zip`))
+		.pipe(gulp.dest('./dist'));
+});
+
+gulp.task(
+	'package',
+	gulp.series(
+		'clean',
+		'compile',
+		'package-copy',
+		'package-compress',
+		'clean-package-files'
+	)
+);
+
+// Default Tasks
 
 gulp.task(
 	'default',
 	gulp.series(
-		'clean',
-		'compile',
 		'package'
 	)
 );

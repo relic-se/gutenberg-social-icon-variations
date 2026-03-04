@@ -40,29 +40,45 @@ function get_version():string {
     return (string) get_data('Version');
 }
 
+function is_valid_icon(array $icon):bool {
+    foreach (['name', 'path'] as $key) {
+        if (!array_key_exists($key, $icon) || empty($icon[$key])) return false;
+    }
+    return true;
+}
+
 function get_icons():array {
     $filename = trim((string)apply_filters('sibv_icon_filename', 'icons.json'), '/');
 
     // Support theme icons
-    $paths = (array)apply_filters('sibv_icon_paths', [
+    $paths = (array)apply_filters('sibv_icon_paths', array_unique([
         trailingslashit(get_stylesheet_directory()) . $filename,
         trailingslashit(get_template_directory()) . $filename,
-    ]);
+    ]));
     $paths = array_filter($paths, 'file_exists');
     $paths = array_reverse($paths); // Change order (child overrides parent)
 
     // Use default icons if theme doesn't exist
     if (empty($paths)) $paths[] = trailingslashit(plugin_dir_path(__FILE__)) . $filename;
 
-    // Decode and merge icon data
+    // Decode, validate, and merge icon data
     $icons = [];
     foreach ($paths as $path) {
         $_icons = wp_json_file_decode($path, [
             'associative'=> true,
         ]);
         if (is_null($_icons)) continue;
+        $_icons = array_filter($_icons, fn ($icon) => is_valid_icon($icon));
         $icons = array_merge($icons, $_icons);
     }
+
+    // Remove duplicate icons
+    $icon_names = wp_list_pluck($icons, 'name');
+    $icons = array_filter(
+        $icons,
+        fn ($value, $key) => array_search($value['name'], $icon_names) == $key,
+        ARRAY_FILTER_USE_BOTH
+    );
 
     return (array) apply_filters('sibv_icons', $icons);
 }

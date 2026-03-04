@@ -40,6 +40,13 @@ function get_version():string {
     return (string) get_data('Version');
 }
 
+function is_valid_icon(array $icon):bool {
+    foreach (['name', 'path'] as $key) {
+        if (!array_key_exists($key, $icon) || empty($icon[$key])) return false;
+    }
+    return true;
+}
+
 function get_icons():array {
     $filename = trim((string)apply_filters('sibv_icon_filename', 'icons.json'), '/');
 
@@ -54,13 +61,14 @@ function get_icons():array {
     // Use default icons if theme doesn't exist
     if (empty($paths)) $paths[] = trailingslashit(plugin_dir_path(__FILE__)) . $filename;
 
-    // Decode and merge icon data
+    // Decode, validate, and merge icon data
     $icons = [];
     foreach ($paths as $path) {
         $_icons = wp_json_file_decode($path, [
             'associative'=> true,
         ]);
         if (is_null($_icons)) continue;
+        $_icons = array_filter($_icons, fn ($icon) => is_valid_icon($icon));
         $icons = array_merge($icons, $_icons);
     }
 
